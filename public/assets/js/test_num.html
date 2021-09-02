@@ -1,0 +1,752 @@
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/leaflet/leaflet.css">
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/leaflet/leaflet.label.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/dist/css/skins/_all-skins.min.css">
+  
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/vis-network.min.js"></script>
+
+  <script src="https://publiclab.github.io/Leaflet.DistortableImage/node_modules/leaflet/dist/leaflet.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/leaflet/leaflet.label.js"></script>
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/leaflet/leaflet-realtime.js"></script>
+  
+  
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/jquery.min.js"></script>
+
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/leaflet/indoormap.js"></script>
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/autocomplete.js"></script>
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/jquery.mask.js"></script>
+
+<script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/autocomplete.js"></script>
+<script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/jquery.mask.js"></script> 
+
+
+ <script>
+	$(function() {
+    $('a[data-toggle="tab"]').on('click', function(e) {
+        window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = window.localStorage.getItem('activeTab');
+    if (activeTab) {
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+        window.localStorage.removeItem("activeTab");
+    }
+	window.localStorage.setItem('activeTab',activeTab);
+	});
+  </script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/js/font_google.css">
+ 
+ <script src="http://nms.yukom.id/~dinara/assets/js/tinymce.min.js" referrerpolicy="origin"></script>
+ <script>
+  tinymce.init({
+    selector: '.wswg',
+    menubar: true
+  });
+</script>
+ 
+<script>
+$(function() {
+	//alert("test");
+    //$(".chosen").chosen();
+})
+
+function onCancelInput(link){
+    window.location.href = link;
+}
+
+function isconfirm(url_val){
+    //alert(url_val); 
+    if(confirm('Are you sure ?') == false)
+    {
+        return false;
+    }
+    else
+    {
+        location.href=url_val;
+    }
+}
+
+function redirected(url_val){
+    location.href=url_val;
+}
+
+function modalShow(data,tabname){
+	//alert("ucup");
+	//return false;
+	//alert(data);
+	//alert(tabname);
+
+	var tabname = tabname;
+	var dataEdit = "dataEdit";
+	var modalid = dataEdit+tabname;
+
+	var mode = data.mode;
+	$('#'+modalid).modal('show');
+	if(mode!='add_detail'){
+	var entries = Object.entries(data);
+	for (var [data, count] of entries) {
+	$('#'+`${data}`).val(`${count}`);
+	}
+	}else{
+	document.getElementById("modalForm").reset();
+	}
+	
+}
+
+$(document).on('click', '.gridCheck', function() {
+		//alert($(this).val());
+		valueCh = $(this).val();
+		var outputCek = "";
+        $(".gridCheck:checked").each(function() {
+            outputCek += $(this).val() + ",";
+        }); 
+        $("#bufferCheckGrid").val(outputCek.trim().slice(0,-1));
+});
+$(document).on('click', '.gridCheckAll', function() {
+		$('.gridCheck').not(this).prop('checked', this.checked);
+		var outputCek = "";
+        $(".gridCheck:checked").each(function() {
+            outputCek += $(this).val() + ",";
+        }); 
+        $("#bufferCheckGrid").val(outputCek.trim().slice(0,-1));
+});
+
+
+
+$( document ).ready(function() {
+$("#multipleDelBut").click(function(){
+    if(confirm("Are you sure you want to delete All?")){
+        $("#delmultiply").submit();
+		
+    }else{
+        return false;
+    }
+});
+$('.numberForm').mask('000,000,000,000,000.00', {reverse: true});
+
+
+
+});
+
+
+</script>
+<script> 
+$('.numberForm').mask('000.000.000.000.000,00', {reverse: true});
+
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dinara Financial</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/leaflet/leaflet.css">
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/leaflet/leaflet.label.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/admin_lte/dist/css/skins/_all-skins.min.css">
+  
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/vis-network.min.js"></script>
+
+  <script src="https://publiclab.github.io/Leaflet.DistortableImage/node_modules/leaflet/dist/leaflet.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/leaflet/leaflet.label.js"></script>
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/leaflet/leaflet-realtime.js"></script>
+  
+  
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/jquery.min.js"></script>
+
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/leaflet/indoormap.js"></script>
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/autocomplete.js"></script>
+  <script type="text/javascript" src="http://nms.yukom.id/~dinara/assets/js/jquery.mask.js"></script>
+  
+  <script>
+	$(function() {
+    $('a[data-toggle="tab"]').on('click', function(e) {
+        window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = window.localStorage.getItem('activeTab');
+    if (activeTab) {
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+        window.localStorage.removeItem("activeTab");
+    }
+	window.localStorage.setItem('activeTab',activeTab);
+	});
+  </script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="http://nms.yukom.id/~dinara/assets/js/font_google.css">
+ 
+ <script src="http://nms.yukom.id/~dinara/assets/js/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: '.wswg',
+    menubar: true
+  });
+</script>
+ 
+<script>
+$(function() {
+	//alert("test");
+    //$(".chosen").chosen();
+})
+
+function onCancelInput(link){
+    window.location.href = link;
+}
+
+function isconfirm(url_val){
+    //alert(url_val); 
+    if(confirm('Are you sure ?') == false)
+    {
+        return false;
+    }
+    else
+    {
+        location.href=url_val;
+    }
+}
+
+function redirected(url_val){
+    location.href=url_val;
+}
+
+function modalShow(data,tabname){
+	//alert("ucup");
+	//return false;
+	//alert(data);
+	//alert(tabname);
+
+	var tabname = tabname;
+	var dataEdit = "dataEdit";
+	var modalid = dataEdit+tabname;
+
+	var mode = data.mode;
+	$('#'+modalid).modal('show');
+	if(mode!='add_detail'){
+	var entries = Object.entries(data);
+	for (var [data, count] of entries) {
+	$('#'+`${data}`).val(`${count}`);
+	}
+	}else{
+	document.getElementById("modalForm").reset();
+	}
+	
+}
+
+$(document).on('click', '.gridCheck', function() {
+		//alert($(this).val());
+		valueCh = $(this).val();
+		var outputCek = "";
+        $(".gridCheck:checked").each(function() {
+            outputCek += $(this).val() + ",";
+        }); 
+        $("#bufferCheckGrid").val(outputCek.trim().slice(0,-1));
+});
+$(document).on('click', '.gridCheckAll', function() {
+		$('.gridCheck').not(this).prop('checked', this.checked);
+		var outputCek = "";
+        $(".gridCheck:checked").each(function() {
+            outputCek += $(this).val() + ",";
+        }); 
+        $("#bufferCheckGrid").val(outputCek.trim().slice(0,-1));
+});
+
+
+
+$( document ).ready(function() {
+$("#multipleDelBut").click(function(){
+    if(confirm("Are you sure you want to delete All?")){
+        $("#delmultiply").submit();
+		
+    }else{
+        return false;
+    }
+});
+$('.numberForm').mask('000,000,000,000,000.00', {reverse: true});
+
+
+
+});
+
+
+</script>
+<script>
+
+</script>
+<style> 
+.table{ 
+padding:17px;
+}
+.table-bordered { 
+border:1px solid #acacac;
+}
+.detail_dbgrid{ 
+margin-left:15px;
+margin-right:15px;
+border:1px dotted #acacac;
+background:#fff;
+padding-top:10px;
+}
+#mynetwork {
+      width: 100%;
+      height: 600px;
+      border: 1px solid lightgray;
+    }
+.sort{ 
+	color:#000;
+}
+.attention { 
+
+	background:#ff0000;
+	padding:5px;
+	font-size:12px;
+	color:#fff;
+	z-index:9000;
+}
+</style>
+</head>
+<body class="hold-transition skin-green-light ">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="../../index2.html" class="logo">
+
+	  
+	  <span class="logo-mini"></span>
+      <!-- logo for regular state and mobile devices -->
+     
+	  <font style="font-size:11pt">Dinara Financial</font>
+	  </span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+
+          <!-- Notifications: style can be found in dropdown.less -->
+ 
+          <!-- Tasks: style can be found in dropdown.less -->
+
+          <!-- User Account: style can be found in dropdown.less -->
+          <!-- Control Sidebar Toggle Button -->
+
+        </ul>
+      </div>
+	  
+	
+		  <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" onclick="window:open('http://nms.yukom.id/~dinara/index.php/systems/Trs_Approval/List','popUpWindow','width=700,height=400');">
+              <i class="fa fa-file-text-o"></i>
+              <span class="label label-warning"></span>
+			  <script>
+			  /*
+			  var url_j = 'http://nms.yukom.id/~dinara/index.php/systems/Trs_Approval/other?headless=1&mode=propose&userid=yusuf ';
+			  function fetchdata(){
+				$.ajax({
+				url	:  url_j,
+				type: 'post',
+				success: function(data){
+					
+					 $('.label-warning').html(data);
+				
+				}
+				});
+				}
+			   $(document).ready(function(){
+				setInterval(fetchdata,1000);
+			   });
+			   */
+			  </script>
+			
+            </a>
+          </li>
+		  
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+              <span class="hidden-xs"> 
+			  Welcome&nbsp;:&nbsp;Yusuf&nbsp;|&nbsp;NIP&nbsp;:&nbsp;78
+					&nbsp;|&nbsp;Company Id&nbsp;:&nbsp;COMP-00001			  </span>
+            </a>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+        </ul>
+      </div>    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+	  <!-- 
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Alexander Pierce</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+	  -->
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+		<li class="treeview">
+							   <a href="#">
+							   <i class="fa fa-home"></i><span>Main Menu</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Desktop/List"><i class="fa fa-desktop"></i>Desktop</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Employee/List"><i class="fa fa-user-circle-o"></i>Employee</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Logout/List"><i class="fa fa-sign-out"></i>Logout</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class="fa fa-television"></i><span>Monitoring</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Report_Diagram_Thermo/List"><i class=""></i>Dashboard</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Report_Diagram_Dash/List"><i class=""></i>Dashboard Setting</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Report_Diagram_Schem/List"><i class=""></i>Layout Setting</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class="fa fa-user-circle-o"></i><span>Employee</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Attendance_Pers/List"><i class="fa fa-sign-in"></i>Manual Attendance</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class="fa fa-bar-chart"></i><span>Report</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Moving/List"><i class=""></i>Moving</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_DevLog/List"><i class=""></i>Move Log</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Rpt_Attendance/List"><i class=""></i>Attendance Report</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Report_Diagram_Thermo_Dtl/List"><i class=""></i>Report Detail</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class=""></i><span>Budgeting</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Bdg_Ini/List"><i class=""></i>Budget Initiation</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Bdg_Ini_Set/List"><i class=""></i>Budget Set</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Bdg_Ini_Allot/List"><i class=""></i>Budget Allotment</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class=""></i><span>Accounting</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Journal_Entry/List"><i class=""></i>Journal Entry</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Mst_Coa/List"><i class=""></i>Chart Of Account (coa)</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_CurrConv/List"><i class=""></i>Currency Conversion</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Journal_Posting/List"><i class=""></i>Journal Posting</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class=""></i><span>Purchasing</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Req/List"><i class=""></i>Purchase Request</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/List"><i class=""></i>Purchase Order</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class="fa fa-address-book-o"></i><span>Human Resource</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Employees/List"><i class="fa fa-users"></i>Employee Information</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Biodata/List"><i class="fa fa-child"></i>Biodata</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_ShiftGroup/List"><i class="fa fa-shirtsinbulk"></i>Shiftgroup</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Emp_Shift/List"><i class="fa fa-object-group"></i>Employee Shiftgroup</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Spv/List"><i class="fa fa-sitemap"></i>Employee Spv</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class="fa fa-table"></i><span>Master Data</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Location/List"><i class=""></i>Master Room</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Schem/List"><i class=""></i>Master Schema</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Machine/List"><i class=""></i>Check Point (thermo Detector)</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Device_Address/List"><i class=""></i>Check Point Setting</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Units/List"><i class="fa fa-cc"></i>Master Units</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Comp/List"><i class=""></i>Companies</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Master_Item/List"><i class=""></i>Item Material</a></li></ul>
+							   </li><li class="treeview">
+							   <a href="#">
+							   <i class="fa fa-window-restore"></i><span>Sysadmin</span>
+							   <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>
+							   <span class="label label-primary pull-right"></span>
+							   </span>
+							   </a>
+							   <ul class="treeview-menu"><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Menu_Manager/List"><i class="fa fa-columns"></i>Menu Manager</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/User_Manager/List"><i class="fa fa-user"></i>User Manager</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Group_Menu/List"><i class="fa fa-list"></i>Group Menu</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Group_Manager/List"><i class="fa fa-users"></i>Group manager</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/User_Group/List"><i class="fa fa-address-card"></i>User Group</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Approval/List"><i class="fa fa-handshake-o"></i>Approval</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/System_Properties/List"><i class="fa fa-cog"></i>System properties</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Journal_Setting/List"><i class="fa fa-table"></i>Journal Setting</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Document_Number/List"><i class=""></i>Document Number Setting</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Excel_Importer/List"><i class=""></i>Excel Importer</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Sign_Staging/List"><i class="fa fa-paper-plane-o"></i>Sign Staging Setting</a></li><li><a href="http://nms.yukom.id/~dinara/index.php/systems/Excel_Importer_Set/List"><i class=""></i>Excel Importer Setup</a></li></ul>
+							   </li>      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <div style="padding-left:14px">Purchase Order</div>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Simple</li>
+      </ol>
+    </section>
+	
+    <!-- Main content -->
+    <section class="content">
+	<style> 
+.approval_pr { 
+	background:#fff;
+	padding:20px;
+}
+</style>
+<div class="container"> 
+<table cellpadding="0" cellspacing="0" border="0" width="100%"> 
+<tr> 
+<td align="left" valign="top" width="50%"> 
+<div ><form action="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit" class="edit" id="edit" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+<div class="row"><div class="form-group float-right col-sm-10"><label >Date</label><input type="date" name="setpostvalue_date" value="2020-09-18" class="form-control"  />
+<small id="set_date" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group float-right col-sm-10"><label >Due Date</label><input type="date" name="setpostvalue_due_date" value="2020-09-18" class="form-control"  />
+<small id="set_due_date" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group float-right col-sm-10"><label >Vendor</label><select name="setpostvalue_vendor" class="form-control dropdown_box1">
+<option value="">--Select One--</option>
+<option value="COMP-00001" selected="selected">PT Unggul Cipta Teknologi</option>
+<option value="COMP-109822">PT Unggul Cipta Teknologi - Operations</option>
+<option value="COMP-116580">PT Yasunaga  </option>
+<option value="COMP-132072">PT Unggul Cipta Teknologi - R&D</option>
+</select>
+<small id="set_vendor" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group float-right col-sm-10"><label >Description</label><textarea name="setpostvalue_description" cols="5" rows="3" class="form-control" ></textarea>
+<small id="set_description" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group"><input type="hidden" name="setpostvalue_userid" value="yusuf" class="form-control"  />
+<small id="seth_userid" class="form-text text-muted"></small></div></div><br>
+<input type="hidden" name="subsyspart" value="save" />
+
+<input type="hidden" name="mode" value="" />
+
+<input type="hidden" name="id" value="1011000295" />
+<input type="submit" name="mysubmit" value="Update Header"   class='btn btn-primary' />
+</form></div></div></td>
+<td align="left" valign="top" width="50%"> 
+</td>
+</tr> 
+</table>
+</div>
+<br><br>
+
+<script>
+						var dataAddcovid19={'mode':'add_detail','data':null};
+						var covid19 = "covid19";
+						</script><script> var data1840508591={ucpid:'1840508591',id:'1840508591',pid:'1011000295',itm_code:'ITM0000001',itm_group:'ITM0000001',itm_cat:'',itm_desc:'Indorack ',unit:'901560402',price:'200000.00',qty:'1.00',currency:'IDR',discount:'0.00',disc_amount:'0.0000',tax_group:'0',tax_amount:'0.00',total:'200000.0000',total_due:'200000.0000',units:'pcs',mode:"edit_detail"}</script><div class="detail_dbgrid">
+<div class="dbGrid_content"><form action="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295" id="gridForm" method="post" accept-charset="utf-8">
+<div class="col-xs-3"><input type="text" name="filter_search" value="" class="form-control small"  />
+</div><input type="submit" action="submit" value="Search" name="submitS"  class="btn btn-primary icon-save" >&nbsp;&nbsp;&nbsp;<div onclick="modalShow(dataAddcovid19,covid19)" class="btn btn-primary" ><i class="fa fa-plus"></i>&nbsp;Add Detail</div>&nbsp;&nbsp;&nbsp;</form><div class="table table-responsive">Total Rows : 1<table class="table table-bordered table-hover table-striped tablesorter"><thead><tr><th><a href="#" class="sort" >No</a></th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/itm_code"><nobr>Itm Code&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/itm_desc"><nobr>Itm Desc&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/qty"><nobr>Qty&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/unit"><nobr>Unit&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/currency"><nobr>Currency&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/price"><nobr>Price&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/disc"><nobr>Disc&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/tax_grp"><nobr>Tax Grp&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/tax"><nobr>Tax&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/total"><nobr>Total&nbsp;&nbsp;</nobr></a>
+					</th><th>
+						<a class="sort" href="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit/1011000295/0/asc/total_due"><nobr>Total Due&nbsp;&nbsp;</nobr></a>
+					</th><th>Edit</th><th>Delete</th></tr><tr></tr></thead><tbody><tr><td>1</td><td align="">ITM0000001</td><td align="">Indorack </td><td align="right">1,00</td><td align="">pcs</td><td align="">IDR</td><td align="right">200.000,00</td><td align="right">0,00</td><td align="">0</td><td align="right">0,00</td><td align="right">200.000,00</td><td align="right">200.000,00</td><td width=10%><div onclick="modalShow(data1840508591,covid19)" class="btn btn-success" ><i class="fa fa-pencil"></i>&nbsp;Edit</div></td><td width=10%><button type="button" class="btn btn-danger" onclick="return isconfirm('http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/delete_detail/1840508591/')"><i class="fa fa-trash"></i>&nbsp;Delete</button></td></tr><tr><td ><b>Total</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align="right"><b>200.000,00</b></td><td align="right"><b>200.000,00</b></td></tr></tbody></table></div></div></form><div class="row"><div class="col"></div></div><div class="modal fade" id="dataEditcovid19" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h4 class="modal-title" id="exampleModalLabel">Add detail </h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div style="padding:10px"><form  name="modalForm" id="modalForm" method="post"><table class="table" border="1"><tr></td><div class="row"><div class="form-group"><label >Itm_code</label><select name="setpostvalue_itm_code" required class="form-control dropdown_box1" id="itm_code">
+<option value="" selected="selected">--Select One--</option>
+<option value="SVC000001">SVC000001___________Jasa Instalasi Kabel  Fiber Optik</option>
+<option value="ITM0000001">ITM0000001__________Rak Server R8010G 10U</option>
+<option value="ITM0000002">ITM0000002__________Switch Hub</option>
+</select>
+<button name="form_submit" type="button" onClick="window:open('http://nms.yukom.id/~dinara/index.php/systems/Master_Item/List','popUpWindow','width=1000,height=500');" class="btn btn-labeled btn-success" ><i class="fa fa-plus fa-fw"></i>Add New Item</button>
+<small id="set_itm_code" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group"><label >Unit</label><select name="setpostvalue_unit" required class="form-control dropdown_box1" id="unit">
+<option value="" selected="selected">--Select One--</option>
+<option value="943069047">ampere</option>
+<option value="098950424">bol</option>
+<option value="002498020">byte</option>
+<option value="215508026">celcius</option>
+<option value="063305819">day</option>
+<option value="995319973">GigaByte</option>
+<option value="210827060">HOUR</option>
+<option value="120094321">KiloByte</option>
+<option value="151611907">KiloMeter</option>
+<option value="007335330">lot</option>
+<option value="255692214">MegaByte</option>
+<option value="291112085">Meter</option>
+<option value="200235012">Milisecond</option>
+<option value="060250228">Minute</option>
+<option value="203050069">Month</option>
+<option value="901560402">pcs</option>
+<option value="502836825">Percent</option>
+<option value="572226466">running</option>
+<option value="202253392">Second</option>
+<option value="240035700">set</option>
+<option value="210850022">TeraByte</option>
+<option value="029910018">volt</option>
+</select>
+<small id="set_unit" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group"><label >Currency</label><select name="setpostvalue_currency" required class="form-control dropdown_box1" id="currency">
+<option value="" selected="selected">-Select One-</option>
+<option value="IDR">Indonesia Rupiah</option>
+<option value="USD">Us Dollar</option>
+</select>
+<small id="set_currency" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group"><label >Qty</label><input type="number" name="setpostvalue_qty" value="" id="qty" required class="form-control"  />
+<small id="set_qty" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group"><label >Price</label><input type="number" name="setpostvalue_price" value="" id="price" required class="form-control"  />
+<small id="set_price" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group"><label >Discount</label><input type="number" name="setpostvalue_discount" value="" id="discount" class="form-control"  />
+<small id="set_discount" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group"><label >Tax_you_can_fill_blank</label><select name="setpostvalue_tax_group" class="form-control dropdown_box1" id="tax_group">
+<option value="" selected="selected">--Select One--</option>
+<option value="0">No Tax</option>
+<option value="PPH21-">PPH Pasal 21 Pengurang</option>
+<option value="PPN10">PPN 10%</option>
+</select>
+<small id="set_tax_you_can_fill_blank" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group"><input type="hidden" name="setpostvalue_pid" value="1011000295" id="pid" class="form-control"  />
+<small id="seth_hidden" class="form-text text-muted"></small></div></div><input type="hidden" name="setpostvalue_id" class="form-control" id="ucpid" value=""><input type="hidden" name="mode" class="form-control" id="mode" value=""></td></tr></table></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button><button type="submit" action="submit" id="submitBtn" class="btn btn-primary" >Save Changes</button></form></div></div></div></div><div class="justify-content-end" style="padding:20px;">
+<div ><form action="http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/edit" class="edit" id="edit" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+<div class="row"><div class="form-group float-right col-md-4"><label >Discount</label><input type="number" name="setpostvalue_disc" value="20000.0000" class="form-control numberForm"  />
+<small id="set_discount" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group float-right col-md-4"><label >Tax</label><input type="number" name="setpostvalue_tax" value="0.0000" class="form-control"  />
+<small id="set_tax" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group float-right col-md-4"><label >Total</label><input type="number" name="setpostvalue_total" value="200000.0000" class="form-control numberForm"  />
+<small id="set_total" class="form-text text-muted"></small></div></div><div class="row"><div class="form-group float-right col-md-4"><label >Total Due</label><input type="number" name="setpostvalue_total_due" value="180000.0000" class="form-control numberForm"  />
+<small id="set_total_due" class="form-text text-muted"></small></div></div><br>
+<input type="hidden" name="subsyspart" value="save" />
+
+<input type="hidden" name="mode" value="" />
+
+<input type="hidden" name="id" value="1011000295" />
+<input type="submit" name="mysubmit" value="Save"   class='btn btn-primary' />
+<button name="close" type="button"  class="btn btn-primary" onClick=onCancelInput("http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/List")><i class="glyphicon glyphicon-remove"></i> Close</button>
+<button name="form_submit" type="button" ="" onClick="window:open('http://nms.yukom.id/~dinara/index.php/systems/Trs_Approval/Add/save?data_id=1011000295&module_id=1940610074&origin=yusuf','popUpWindow','width=1000,height=500');" class="btn btn-labeled btn-danger" ><i class="fa fa-send fa-fw"></i>Send Approval</button>
+<button name="form_submit" type="button" onClick="window:open('http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/Print/1011000295','popUpWindow','width=1000,height=500');" class="btn btn-labeled btn-success" ><i class="fa fa-print fa-fw"></i>Print</button>
+</form></div></div></div>
+</div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.13
+    </div>
+    <strong>Copyright &copy; 2014-2019 <a href=""></a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<!-- Bootstrap 3.3.7 -->
+<script src="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="http://nms.yukom.id/~dinara/assets/admin_lte/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="http://nms.yukom.id/~dinara/assets/admin_lte/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="http://nms.yukom.id/~dinara/assets/admin_lte/dist/js/demo.js"></script>
+
+<script>
+
+  $(function(){
+	$('#modalForm').submit(function(){
+		var mode = $('#mode').val();
+		if(mode != ''){
+			var mod = mode;
+		}else {
+			var mod = 'add_detail';
+		}
+		$('#modalForm').attr('action',"http://nms.yukom.id/~dinara/index.php/systems/Trs_Puchase_Ord/"+mod);
+	});
+  });
+  
+if (window.opener && window.opener !== window) {
+  $( ".main-header" ).hide();
+  $( ".sidebar-menu" ).hide();
+  $( ".breadcrumb" ).hide();
+  $( ".control-sidebar" ).hide();
+  $( ".main-sidebar" ).hide();
+  $( "body" ).addClass( "sidebar-collapse" );
+}
+
+</script>
+<input class="form-control numberForm" type="text"   placeholder="___">
+
+
+</body>
+
+</html>

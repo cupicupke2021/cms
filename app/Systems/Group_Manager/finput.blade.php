@@ -1,0 +1,1 @@
+@php echo $aryCont['genform'] @endphp
