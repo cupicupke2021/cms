@@ -1,0 +1,365 @@
+{
+	"info": {
+		"_postman_id": "af370707-a5d4-40fa-86c5-d7e9879f3a21",
+		"name": "TEST_PROGRAMMER YUSUF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADD_BARANG_MASUK",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subsyspart",
+							"value": "save",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.sifseafood.co.id/system/Trs_Barang_Masuk/add/dummy/rest/save?token=ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV&setpost_date=2021-01-01 &setpost_itm_code=A0101&setpost_qty=10",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"sifseafood",
+						"co",
+						"id"
+					],
+					"path": [
+						"system",
+						"Trs_Barang_Masuk",
+						"add",
+						"dummy",
+						"rest",
+						"save"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV"
+						},
+						{
+							"key": "setpost_date",
+							"value": "2021-01-01 "
+						},
+						{
+							"key": "setpost_itm_code",
+							"value": "A0101"
+						},
+						{
+							"key": "setpost_qty",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT_BARANG_MASUK",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subsyspart",
+							"value": "save",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.sifseafood.co.id/system/Trs_Barang_Masuk/add/dummy/rest/save?token=ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV&setpost_date=2021-01-01 &setpost_itm_code=A0101&setpost_qty=10&setunique_id=id",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"sifseafood",
+						"co",
+						"id"
+					],
+					"path": [
+						"system",
+						"Trs_Barang_Masuk",
+						"add",
+						"dummy",
+						"rest",
+						"save"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV"
+						},
+						{
+							"key": "setpost_date",
+							"value": "2021-01-01 "
+						},
+						{
+							"key": "setpost_itm_code",
+							"value": "A0101"
+						},
+						{
+							"key": "setpost_qty",
+							"value": "10"
+						},
+						{
+							"key": "setunique_id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE_BARANG_MASUK",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subsyspart",
+							"value": "save",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.sifseafood.co.id/system/Trs_Barang_Masuk/delete/am9obl9kb2U/rest/save?token=ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"sifseafood",
+						"co",
+						"id"
+					],
+					"path": [
+						"system",
+						"Trs_Barang_Masuk",
+						"delete",
+						"am9obl9kb2U",
+						"rest",
+						"save"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD_BARANG_KELUAR",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subsyspart",
+							"value": "save",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.sifseafood.co.id/system/Trs_Barang_Masuk/add/dummy/rest/save?token=ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV&setpost_date=2021-01-01 &setpost_itm_code=A0101&setpost_qty=10",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"sifseafood",
+						"co",
+						"id"
+					],
+					"path": [
+						"system",
+						"Trs_Barang_Masuk",
+						"add",
+						"dummy",
+						"rest",
+						"save"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV"
+						},
+						{
+							"key": "setpost_date",
+							"value": "2021-01-01 "
+						},
+						{
+							"key": "setpost_itm_code",
+							"value": "A0101"
+						},
+						{
+							"key": "setpost_qty",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT_BARANG_KELUAR",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subsyspart",
+							"value": "save",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.sifseafood.co.id/system/Trs_Barang_Masuk/add/dummy/rest/save?token=ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV&setpost_date=2021-01-01 &setpost_itm_code=A0101&setpost_qty=10&setunique_id=id",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"sifseafood",
+						"co",
+						"id"
+					],
+					"path": [
+						"system",
+						"Trs_Barang_Masuk",
+						"add",
+						"dummy",
+						"rest",
+						"save"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV"
+						},
+						{
+							"key": "setpost_date",
+							"value": "2021-01-01 "
+						},
+						{
+							"key": "setpost_itm_code",
+							"value": "A0101"
+						},
+						{
+							"key": "setpost_qty",
+							"value": "10"
+						},
+						{
+							"key": "setunique_id",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE_BARANG_KELUAR",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "subsyspart",
+							"value": "save",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.sifseafood.co.id/system/Trs_Barang_Masuk/delete/am9obl9kb2U/rest/save?token=ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"sifseafood",
+						"co",
+						"id"
+					],
+					"path": [
+						"system",
+						"Trs_Barang_Masuk",
+						"delete",
+						"am9obl9kb2U",
+						"rest",
+						"save"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "ERP-2021-09-02RO4pIyMMZOCvkMDNtIMV"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
