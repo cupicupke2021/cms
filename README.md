@@ -5,7 +5,16 @@
 2. Staff Gudang 
     User : john_doe 
     Pass : kucingbadak
+    
+# Setting
 
+Untuk rest API set link app/Http/Middleware/VerifyCsrfToken, 
+
+rubah bagian ini : 
+
+protected $except = [
+		 'http://dev.sifseafood.co.id/system/*/*/*/rest/*' 
+    ];
 
 # Test Programmer 
 -- Dynamic Route 
